@@ -1,0 +1,95 @@
+ [
+    {
+        "id": "1",
+        "nombre": "Perro",
+        "genero":["Masculino","Femenino"]
+    }
+    ,
+    {
+        "id": "2",
+        "nombre": "Gato",
+        "genero":["Masculino","Femenino"]
+    }
+    ,
+    {
+        "id": "3",
+        "nombre": "Vaca"  ,
+        "genero":["Femenino"]
+    }
+    ,
+    
+    {
+        "id": "4",
+        "nombre": "Toro"  ,
+        "genero":["Masculino"]
+    }
+    ,
+    {
+        "id": "5",
+        "nombre": "Caballo",
+        "genero":["Masculino"]
+    }
+    ,
+    {
+        "id": "6",
+        "nombre": "Yegua",
+        "genero":["Femenino"]
+    }
+    ,
+    {
+        "id": "7",
+        "nombre": "Cabro",
+        "genero":["Masculino","Femenino"]
+    }
+    ,
+    {
+        "id": "8" ,
+        "nombre": "Oveja",
+        "genero":["Femenino"]
+    }
+    ,
+    {
+        "id": "9" ,
+        "nombre": "Cordero",
+        "genero":["Masculino"]
+    }
+    ,
+    {
+        "id": "10" ,
+        "nombre": "Conejo",
+        "genero":["Masculino","Femenino"]
+    }
+
+    ,
+    {
+        "id": "11" ,
+        "nombre": "Burro",
+        "genero":["Masculino","Femenino"]
+    }
+    ,
+    {
+        "id": "12" ,
+        "nombre": "Pato",
+        "genero":["Masculino","Femenino"]
+    }
+    , 
+    {
+        "id": "13" ,
+        "nombre": "Ganso",
+        "genero":["Masculino","Femenino"]
+    }
+    , 
+    {
+        "id": "14" ,
+        "nombre": "Cerdo",
+        "genero":["Masculino","Femenino"]
+    }
+    , 
+    {
+        "id": "15" ,
+        "nombre": "Hamster",
+        "genero":["Masculino","Femenino"]
+    }
+
+
+]

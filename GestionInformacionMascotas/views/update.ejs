@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <%- include('./templates/header')%>
+    
+        <style>
+    
+           
+    @media (max-width: 991px){
+
+      .btn-secondary{
+          display:none;
+      }
+
+      #searchnav{
+          display:none;
+      }
+      }
+    
+      </style>
+      </head>
+      <body>
+        <%- include('./templates/navbar')%> 
+        
+        <%- include('./templates/form_modify')%>
+    
+        
+    
+        <script>
+
+     
+      document.getElementById('addbutton').style.display = 'none';
+      document.getElementById('searchbutton').style.display = 'none';
+      document.getElementById('searchinput').style.display = 'none';
+          var dataanimals = <%-JSON.stringify(animals)%>;
+          document.getElementById("specie").addEventListener("change", () => {
+            var animalcode = document.getElementById("specie").value;
+            
+            var gender = document.getElementById("gender");
+    
+    
+            const animals=dataanimals.filter(animal=>animal.nombre==animalcode).forEach(reg => {
+                reg.genero.forEach(val=>{
+                    gender.append(new Option(val,val))
+                })
+            });
+    
+           
+              
+          });
+        </script>
+      </body>
+</html>

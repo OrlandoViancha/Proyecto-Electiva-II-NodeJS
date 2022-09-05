@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <%- include('./templates/header')%>
+    <link rel="stylesheet" type="text/css" href="../public/css/index.css" />
+    <style>
+      @media (max-width: 991px) {
+        .btn-secondary {
+          display: none;
+        }
+
+        #searchnav {
+          display: none;
+        }
+      }
+      @media (min-width: 991px) {
+        #searchdiv {
+          display: none;
+        }
+
+      }
+    </style>
+  </head>
+  <body>
+    <%- include('./templates/navbar')%>
+    <div style="padding-top: 5rem">
+      <div class="row" style="padding-bottom: 2rem">
+        <div class="row g-3">
+          <div class="col-auto">
+            <select
+              class="form-select"
+              id="specie"
+              aria-label="Default select example"
+            >
+              <option>Seleccione Especie..</option>
+
+              <%genero.forEach(animals =>{%>
+              <option value="<%= animals.nombre%>"><%= animals.nombre%></option>
+              <% })%>
+            </select>
+          </div>
+          <div class="col-auto">
+            <button type="submit" class="btn btn-danger" onclick="filtrar()">
+              Filtrar
+            </button>
+          </div>
+          <div class=" col-3 ms-auto" id="searchdiv">
+            <input
+            
+              class="form-control me-2"
+              id="searchinput2"
+              type="search"
+              placeholder="Inserte la cedula"
+              aria-label="Search"
+            ></input>
+            </div>
+          <div class="col-3 me-auto"  id="searchdiv">
+            <button  class="btn btn-success" id="searchbutton" onclick="buscar()" type="submit">Search</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <%- include('./templates/table')%> <%- include('./templates/modal')%>
+
+    <script>
+
+             var dataanimals = <%-JSON.stringify(animals)%>;
+
+            function eliminar(mascota,cedula){
+
+
+                 fetch("http://localhost:3000/",{
+
+                     method: 'POST',
+                     body: JSON.stringify({id:cedula,pet:mascota}),
+                     headers:{
+                         'Content-Type': 'application/json'
+                     }
+                 })
+                 .then(respuesta => respuesta.json() )
+                 .then(respuesta =>{
+
+                 }
+                )
+                window.location.href="http://localhost:3000/"
+
+
+            }
+
+
+            function descripcion(nombre,especie,genero,enfermedad,nomdueño,apedueño,cedula,direccion,email,telefono){
+
+             document.getElementById("modal-body").innerHTML =
+                     `<div>
+                     <h2>Datos de la Mascota</h2>
+                     </br>
+                     <p>Mascota : ${nombre}</p>
+                     <p>Especie : ${especie}</p>
+                     <p>Genero : ${genero}</p>
+                     <p>Enfermedad : ${enfermedad}</p>
+                     </br></br>
+                     <h2>Datos del Dueño </h2>
+                     </br>
+                     <p>Nombre : ${nomdueño}</p>
+                     <p>Apellidos : ${apedueño}</p>
+                     <p>Cedula : ${cedula}</p>
+                     <p>Direccion: ${direccion}</p>
+                     <p>Email: ${email}</p>
+                     <p>Telefono: ${telefono}</p>
+                     </div>
+
+                     `
+             }
+
+             function filtrar(){
+              document.getElementById("tbody").innerHTML="";
+
+                 var especie=document.getElementById("specie").value
+                 dataanimals.filter(item=>item.especie==especie).forEach(val=>{
+
+                        document.getElementById("tbody").innerHTML+=`
+
+                        <tr>
+                         <td>${val.mascota}</td>
+                         <td>${val.nombredueño} ${val.apellidosdueño}</td>
+                         <td>${val.especie}</td>
+                         <td>${val.genero}</td>
+                         <td>
+                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" onclick="descripcion('${val.mascota}','${val.especie}','${val.genero}','${val.enfermedad}','${val.nombredueño}','${val.apellidosdueño}','${val.cedula}','${val.direccion}','${val.email}','${val.telefono}');" data-bs-target="#exampleModal">
+                           D
+                          </button>
+                         <button  class="btn btn-danger" onclick=eliminar(${val.mascota},${val.cedula}) >E</button>
+                         <button type="submit" class="btn btn-warning" onclick="actualizar(${val.mascota},${val.cedula})" >A</button>
+
+                         </td>
+                         </tr>`
+
+
+
+                 })
+
+             }
+
+
+                  function buscar(){
+                      document.getElementById("tbody").innerHTML="";
+
+
+                     var cedula= document.getElementById("searchinput").value;
+                      var estado=false;
+                     dataanimals.forEach(val=>{
+                     if(val.cedula==cedula||val.cedula==document.getElementById("searchinput2").value){
+
+                        estado=true;
+                        document.getElementById("tbody").innerHTML+=`
+
+                        <tr>
+                         <td>${val.mascota}</td>
+                         <td>${val.nombredueño} ${val.apellidosdueño}</td>
+                         <td>${val.especie}</td>
+                         <td>${val.genero}</td>
+                         <td>
+                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" onclick="descripcion('${val.mascota}','${val.especie}','${val.genero}','${val.enfermedad}','${val.nombredueño}','${val.apellidosdueño}','${val.cedula}','${val.direccion}','${val.email}','${val.telefono}');" data-bs-target="#exampleModal">
+                           D
+                          </button>
+                         <button  class="btn btn-danger" onclick=eliminar('${val.mascota}',${val.cedula}) >E</button>
+                         <button type="submit" class="btn btn-warning" onclick="actualizar(${val.mascota},${val.cedula})" >A</button>
+                         </td>
+                         </tr>`
+                     }
+
+                  })
+                  if(estado==false){
+                      alert("No se encuentra registrado el dueño")
+                  }
+
+              }
+
+              function actualizar(mascota,cedula){
+
+                  window.location.href =`./actualizar/${mascota};${cedula}`
+              }
+    </script>
+  </body>
+</html>

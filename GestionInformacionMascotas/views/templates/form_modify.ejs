@@ -1,0 +1,89 @@
+<div class="container">
+    <div class="container" style="padding-top: 2.5rem">
+      <h2>Datos de la Mascota</h2>
+      <br />
+      <form class="row g-3" method="post">
+        <div class="col-12">
+          <label for="inputEmail4" class="form-label">Nombre</label>
+          <input type="text" value="<%= pet[0].mascota%>" name="namepet"  class="form-control" id="namepet" required />
+        </div>
+  
+        <div class="col-md-6">
+          <label for="inputAddress" class="form-label">Especie</label>
+  
+          <select
+            class="form-select"
+            name="specie"
+            aria-label="Default select example"
+            id="specie"
+            required
+          >
+          <option >Seleccione Especie..</option>
+          
+            <%animals.forEach(animals =>{%>
+                <option value="<%= animals.nombre%>" ><%= animals.nombre%></option>
+            <% })%>
+          </select>
+        </div>
+        <div class="col-md-6">
+          <label for="inputAddress2" class="form-label">Genero</label>
+          <select
+            class="form-select"
+            name="gender"
+            aria-label="Default select example"
+            id="gender"
+            required
+          >
+            <option selected>Seleccione Sexo..</option>
+          </select>
+        </div>
+  
+        <div class="col-12">
+          <label for="inputZip" class="form-label">Enfermedad</label>
+          <input type="text" value="<%= pet[0].enfermedad%>" name="illness"class="form-control" id="illness_pet" required />
+        </div>
+        
+        <div>
+          <br/><br/>
+          <h2>Datos del Dueño</h2>
+          <br/>
+        </div>
+        
+        
+        <div class="col-md-6">
+          
+          <label for="inputEmail4" class="form-label">Nombre</label>
+          <input type="text" value="<%= pet[0].nombredueño%>" name="nameowner" class="form-control" id="name_owner" required />
+        </div>
+  
+        <div class="col-md-6">
+          
+          <label for="inputEmail4" class="form-label">Apellidos</label>
+          <input type="text" value="<%= pet[0].apellidosdueño%>"name="lastnameowner" class="form-control" id="lastname_owner" required />
+        </div>
+  
+        <div class="col-md-6">
+          <label for="inputEmail4" class="form-label">Cedula</label>
+          <input type="number" value="<%= pet[0].cedula%>"name="identification" class="form-control" id="phone_number" required />
+        </div>
+  
+        <div class="col-md-6">
+          <label for="inputEmail4" class="form-label">Direccion</label>
+          <input type="text" value="<%= pet[0].direccion%>"name="direction" class="form-control" id="direction_owner" required />
+        </div>
+  
+        <div class="col-md-6">
+          <label for="inputEmail4" class="form-label">Email</label>
+          <input type="email" value="<%= pet[0].email%>"name="emailowner" class="form-control" id="email_owner" required />
+        </div>
+  
+        <div class="col-md-6">
+          <label for="inputEmail4" class="form-label">Telefono</label>
+          <input type="number" value="<%= pet[0].telefono%>"name="phone_number" class="form-control" id="phone_number" required />
+        </div>
+        <div class="col-12" style="padding-top: 1rem; text-align: center">
+          <button type="submit" class="btn btn-primary" >Sign in</button>
+        </div>
+      </form>
+    </div>
+  </div>
